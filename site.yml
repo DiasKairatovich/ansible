@@ -1,0 +1,23 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: install updates (Rocky Linux)
+    dnf:
+      update_only: yes
+      update_cache: yes
+
+
+
+- hosts: web_servers
+  become: true
+  tasks:
+
+  - name: install apache and php
+    dnf:
+      name:
+        - httpd
+        - php
+      state: latest
