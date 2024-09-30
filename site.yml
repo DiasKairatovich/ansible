@@ -4,7 +4,7 @@
   become: true
   tasks:
 
-  - name: install updates (Rocky Linux)
+  - name: install updates for all Rocky Linux servers
     dnf:
       update_only: yes
       update_cache: yes
@@ -15,9 +15,20 @@
   become: true
   tasks:
 
-  - name: install apache and php
+  - name: install apache and php for all web servers
     dnf:
       name:
         - httpd
         - php
+      state: latest
+
+
+
+- hosts: file_servers
+  become: true
+  tasks:
+
+  - name: install samba package for all file servers
+    package:
+      name: samba
       state: latest
